@@ -7,6 +7,7 @@ Created on Thu Jan 20 12:14:22 2022
 """
 
 from flask import Flask
+#import pandas as pd
 import BestandFreek as fr
 
 app = Flask(__name__)
@@ -16,8 +17,7 @@ def prod_lookup_ep():
     '''
     End point voor terug geven van voedingswaarden van een product naar keuze.
     '''    
-    return fr.prod_lookup()
-    print('Voedingswaarden geretourneerd!')
+    return fr.prod_lookup("butter,with")
 
 
 
