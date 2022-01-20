@@ -7,12 +7,18 @@ Created on Thu Jan 20 12:14:22 2022
 """
 
 from flask import Flask
+import endpointTest
 
 app = Flask(__name__)
 
 @app.route("/")
-def hello_world():
-    return "<p>Hallo Daniel</p>"
+def end_point_test():
+    message = endpointTest.readFile()
+    return message
+
+
+
+
 
 print("hallo")
 
