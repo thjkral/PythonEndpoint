@@ -20,7 +20,5 @@ def end_point_test():
 
 
 
-print("hallo")
-
 
 
