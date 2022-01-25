@@ -16,22 +16,20 @@ def prod_lookup(prod_name):
 
     
     prod_name = prod_name.split()
-    
-    print(len(prod_name))
 
     for i, product in testdf.iterrows(): 
         if len(prod_name) == 1:
             if prod_name[0] in product["ShortDescrip"]:
-                print(str(product))
+                return str(product)
         elif len(prod_name) == 2:
             if prod_name[0] in product["ShortDescrip"] and prod_name[1] in product["ShortDescrip"]:
-                print(str(product))
+                return str(product)
         elif len(prod_name) == 3:
             if prod_name[0] in product["ShortDescrip"] and prod_name[1] in product["ShortDescrip"] and prod_name[2] in product["ShortDescrip"]:
-                print(str(product))
+                return str(product)
         elif len(prod_name) == 4:
             if prod_name[0] in product["ShortDescrip"] and prod_name[1] in product["ShortDescrip"] and prod_name[2] in product["ShortDescrip"] and prod_name[3] in product["ShortDescrip"]:
-                print(str(product))
+                return str(product)
      
 
-prod_lookup("butter with salt")
+# prod_lookup("butter with salt")
