@@ -14,25 +14,28 @@ def prod_lookup(prod_name):
 
     prod_name = prod_name.upper()
 
-    
     prod_name = prod_name.split()
+
+    prodList = []
 
     for i, product in testdf.iterrows(): 
         if len(prod_name) == 1:
             if prod_name[0] in product["ShortDescrip"]:
-                return str(product)
+                prodList.append(product)                
         elif len(prod_name) == 2:
             if prod_name[0] in product["ShortDescrip"] and prod_name[1] in product["ShortDescrip"]:
-                return str(product)
+                prodList.append(product)  
         elif len(prod_name) == 3:
             if prod_name[0] in product["ShortDescrip"] and prod_name[1] in product["ShortDescrip"] and prod_name[2] in product["ShortDescrip"]:
-                return str(product)
+                prodList.append(product) 
         elif len(prod_name) == 4:
             if prod_name[0] in product["ShortDescrip"] and prod_name[1] in product["ShortDescrip"] and prod_name[2] in product["ShortDescrip"] and prod_name[3] in product["ShortDescrip"]:
-                return str(product)
+                prodList.append(product)
+                
+    return prodList 
      
 
-# prod_lookup("butter with salt")
+# prod_lookup("chili beans")
 
 # De functie hieronder zoek een product op aan de hand van de barcode en geeft alle values terug die aan dat product gekoppeld zijn.
 
@@ -63,7 +66,6 @@ def id_lookup(ID):
 
     for i, product in testdf.iterrows():
         if product["ID"] == ID:
-            print(str(product))
             return (str(product))
 
 # id_lookup(1019)
@@ -85,6 +87,10 @@ def barcode_modifier(new_barcode, prod_name):
         if prod_name in x["ShortDescrip"]:
             x = x.replace(x["Barcode"], new_barcode)
             testdf.loc[i] = x
+            print(str(x))
             return (str(x))
     
-# barcode_modifier(5900512110165, "edam")
+# barcode_modifier(8710400044567, "TOMATO PRODUCTS,CND,PUREE,W/SALT")
+# barcode_modifier(8718907108324, "BEANS,CHILI,BARBECUE,RANCH STYLE,CKD")
+# barcode_modifier(8710400044567, "RICE,BROWN,MEDIUM-GRAIN,CKD")
+# barcode_modifier(8710400044567, "TOMATO PRODUCTS,CND,PUREE,WO/SALT")
