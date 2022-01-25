@@ -14,6 +14,11 @@ import json
 
 app = Flask(__name__)
 
+@app.route('/')
+def welcome_message():
+    return '<p>Python Endpoint</p>'
+
+
 @app.route('/nameLookup/<name>') # Zoeken op productnaam
 def name_lookup(name):
     return fr.prod_lookup(name)
