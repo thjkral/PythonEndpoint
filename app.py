@@ -14,22 +14,22 @@ import json
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route("/")
 def welcome_message():
-    return '<p>Python Endpoint</p>'
+    return "<p>Python Endpoint</p>"
 
 
-@app.route('/nameLookup/<name>') # Zoeken op productnaam
+@app.route("/nameLookup/<name>") # Zoeken op productnaam
 def name_lookup(name):
     return fr.prod_lookup(name)
 
 
-@app.route('/idLookup/<id>') # Zoeken op ID
+@app.route("/idLookup/<id>") # Zoeken op ID
 def id_lookup(id):
     pass
 
 
-@app.route('/bcodeLookup/<bcode>') # Zoeken op barcode
+@app.route("/bcodeLookup/<bcode>") # Zoeken op barcode
 def bcode_lookup(bcode):
     pass
 
