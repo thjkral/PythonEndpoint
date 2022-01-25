@@ -12,15 +12,20 @@ import BestandFreek as fr
 
 app = Flask(__name__)
 
-@app.route("/prodLookup")
-def prod_lookup_ep():
-    '''
-    End point voor terug geven van voedingswaarden van een product naar keuze.
-    '''    
-    return fr.prod_lookup("butter,with")
+
+@app.route('/nameLookup/<name>') # Zoeken op productnaam
+def name_lookup(name):
+    return fr.prod_lookup(name)
 
 
+@app.route('/idLookup/<id>') # Zoeken op ID
+def id_lookup(id):
+    pass
 
+
+@app.route('/bcodeLookup/<bcode>') # Zoeken op barcode
+def bcode_lookup(bcode):
+    pass
 
 
 
