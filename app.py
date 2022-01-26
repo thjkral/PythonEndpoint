@@ -108,5 +108,3 @@ def result():
     return redirect("scanner")
 
 # END Barcode Webcam Scanner
-
-app.run()
