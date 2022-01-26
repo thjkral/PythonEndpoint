@@ -32,12 +32,26 @@ def name_lookup(name):
 
 @app.route("/idLookup/<id>") # Zoeken op ID
 def id_lookup(id):
-    return fr.id_lookup(int(id))
+    product = fr.id_lookup(int(id))
+    
+    if product == None:
+        return "No results"
+    else:
+        return product
 
 
 @app.route("/bcodeLookup/<bcode>") # Zoeken op barcode
 def bcode_lookup(bcode):
-   return fr.bcode_lookup(bcode)
+   product = fr.bcode_lookup(bcode)
+   
+   if product == None:
+       return "No results"
+   else:
+       return product
+
+
+
+
 
 
 
