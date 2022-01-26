@@ -2,3 +2,5 @@ Flask==2.0.2
 pandas
 opencv-python-headless
 pyzbar
+pyzbar[scripts]
+pyzbar-python
