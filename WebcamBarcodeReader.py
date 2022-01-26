@@ -1,5 +1,5 @@
 import cv2
-# from pyzbar import pyzbar as pb
+import pyzbar.pyzbar as pb
 
 # from imutils.video import VideoStream
 # https://www.pyimagesearch.com/2019/09/02/opencv-stream-video-to-web-browser-html-page/
