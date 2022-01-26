@@ -1,21 +1,21 @@
-from cv2 import putText, FONT_HERSHEY_DUPLEX, FONT_HERSHEY_PLAIN, VideoCapture, imencode
+import cv2
 import pyzbar.pyzbar as pb
 
-font_duplex = FONT_HERSHEY_DUPLEX
-font_simple = FONT_HERSHEY_PLAIN
+font_duplex = cv2.FONT_HERSHEY_DUPLEX
+font_simple = cv2.FONT_HERSHEY_PLAIN
 
 
 def setText(_img, _string, _pos, _font, _scale, _color, _thickness):
   # cv2.putText(img, string, pos, font, scale, color, thickness)
-  txt_shadow = putText(_img, _string, _pos, _font, _scale, (0, 0, 0), _thickness + 1)
-  txt = putText(_img, _string, _pos, _font, _scale, _color, _thickness)
+  txt_shadow = cv2.putText(_img, _string, _pos, _font, _scale, (0, 0, 0), _thickness + 1)
+  txt = cv2.putText(_img, _string, _pos, _font, _scale, _color, _thickness)
 
 
 code = 0
 
 
 def gen():
-  camera = VideoCapture(0)
+  camera = cv2.VideoCapture(0)
   while True:
     success, frame = camera.read()
     if not success:
@@ -38,7 +38,7 @@ def gen():
           global code
           code = o['name']
 
-      ret, buffer = imencode(".jpg", frame)
+      ret, buffer = cv2.imencode(".jpg", frame)
       frame = buffer.tobytes()
       yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
       if decoded != []:
