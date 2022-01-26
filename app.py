@@ -9,8 +9,8 @@ Created on Thu Jan 20 12:14:22 2022
 
 from flask import Flask
 import pandas as pd
-import BestandFreek as fr
 import json
+import BestandFreek as fr
 
 app = Flask(__name__)
 
