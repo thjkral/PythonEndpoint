@@ -6,10 +6,11 @@ Created on Thu Jan 20 12:14:22 2022
 """
 
 
-from flask import Flask
+from flask import Flask, render_template, Response, redirect
 import pandas as pd
 import json
 import BestandFreek as fr
+import WebcamBarcodeReader as wbr
 
 app = Flask(__name__)
 
