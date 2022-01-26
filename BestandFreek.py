@@ -6,33 +6,32 @@ import json
 
 def prod_lookup(prod_name):
 
-    data = pd.read_json("NutrientDatasetDictBarcode.json", 'r')
+    data = pd.read_json("NutrientDatasetWithBarcodes.json", 'r')
 
     df = pd.DataFrame(data)
-    
+
     testdf = df.copy()
 
-    prod_name = prod_name.upper()
+    prod_name = prod_name.lower()
 
     prod_name = prod_name.split()
 
     prodList = []
 
-    for i, product in testdf.iterrows(): 
+    for i, product in testdf.iterrows():
         if len(prod_name) == 1:
-            if prod_name[0] in product["ShortDescrip"]:
-                prodList.append(product)                
-        elif len(prod_name) == 2:
-            if prod_name[0] in product["ShortDescrip"] and prod_name[1] in product["ShortDescrip"]:
-                prodList.append(product)  
-        elif len(prod_name) == 3:
-            if prod_name[0] in product["ShortDescrip"] and prod_name[1] in product["ShortDescrip"] and prod_name[2] in product["ShortDescrip"]:
-                prodList.append(product) 
-        elif len(prod_name) == 4:
-            if prod_name[0] in product["ShortDescrip"] and prod_name[1] in product["ShortDescrip"] and prod_name[2] in product["ShortDescrip"] and prod_name[3] in product["ShortDescrip"]:
+            if prod_name[0] in product["Descrip"]:
                 prodList.append(product)
-                
-    return prodList 
+        elif len(prod_name) == 2:
+            if prod_name[0] in product["Descrip"] and prod_name[1] in product["Descrip"]:
+                prodList.append(product)
+        elif len(prod_name) == 3:
+            if prod_name[0] in product["Descrip"] and prod_name[1] in product["Descrip"] and prod_name[2] in product["Descrip"]:
+                prodList.append(product)
+        elif len(prod_name) == 4:
+            if prod_name[0] in product["Descrip"] and prod_name[1] in product["Descrip"] and prod_name[2] in product["Descrip"] and prod_name[3] in product["Descrip"]:
+                prodList.append(product)
+    return prodList
      
 
 # prod_lookup("chili beans")
@@ -41,7 +40,7 @@ def prod_lookup(prod_name):
 
 def bcode_lookup(barcode):
 
-    data = pd.read_json("NutrientDatasetDictBarcode.json", 'r')
+    data = pd.read_json("NutrientDatasetWithBarcodes.json", 'r')
 
     df = pd.DataFrame(data)
     
@@ -58,7 +57,7 @@ def bcode_lookup(barcode):
 
 def id_lookup(ID):
 
-    data = pd.read_json("NutrientDatasetDictBarcode.json", 'r')
+    data = pd.read_json("NutrientDatasetWithBarcodes.json", 'r')
 
     df = pd.DataFrame(data)
     
@@ -73,24 +72,25 @@ def id_lookup(ID):
 # Deze functie zal een barcode vervangen voor een barcode die ingegeven is als argument.
 # DEZE HOEFT NIET ONLINE TE KOMEN MAAR ALLEEN TE GEBRUIKEN VOOR HET VERVANGEN VAN BARCODES VAN EEN AANTAL VOORBEELD PRODUCTEN.
 
-def barcode_modifier(new_barcode, prod_name):
+# def barcode_modifier(new_barcode, prod_name):
 
-    data = pd.read_json("NutrientDatasetDictBarcode.json", 'r')
+#     data = pd.read_json("NutrientDatasetDictUpdate.json", 'r')
 
-    df = pd.DataFrame(data)
+#     df = pd.DataFrame(data)
     
-    testdf = df.copy()
+#     testdf = df.copy()
 
-    prod_name = prod_name.upper()
+#     prod_name = prod_name.upper()
 
-    for i, x in testdf.iterrows():
-        if prod_name in x["ShortDescrip"]:
-            x = x.replace(x["Barcode"], new_barcode)
-            testdf.loc[i] = x
-            print(str(x))
-            return (str(x))
+#     for i, x in testdf.iterrows():
+#         if prod_name in x["ShortDescrip"]:
+#             x = x.replace(x["Barcode"], new_barcode)
+#             testdf.loc[i] = x
+#             return (str(x))
     
 # barcode_modifier(8710400044567, "TOMATO PRODUCTS,CND,PUREE,W/SALT")
-# barcode_modifier(8718907108324, "BEANS,CHILI,BARBECUE,RANCH STYLE,CKD")
-# barcode_modifier(8710400044567, "RICE,BROWN,MEDIUM-GRAIN,CKD")
-# barcode_modifier(8710400044567, "TOMATO PRODUCTS,CND,PUREE,WO/SALT")
+# barcode_modifier(8718907108324, "CHILI WITH BEANS,CANNED")
+# barcode_modifier(3083680597210, "CORN,SWT,WHITE,CKD,BLD,DRND,W/SALT")
+# barcode_modifier(8000050837825, "SPAGHETTI,CKD,ENR,W/ SALT")
+
+
