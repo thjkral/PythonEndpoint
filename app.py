@@ -42,7 +42,7 @@ def id_lookup(id):
 
 @app.route("/bcodeLookup/<bcode>") # Zoeken op barcode
 def bcode_lookup(bcode):
-   product = fr.bcode_lookup(bcode)
+   product = fr.bcode_lookup(int(bcode))
    
    if product == None:
        return "No results"
