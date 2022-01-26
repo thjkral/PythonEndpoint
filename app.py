@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jan 20 12:14:22 2022
+
 @author: tom
 """
 
@@ -32,3 +33,12 @@ def id_lookup(id):
 @app.route("/bcodeLookup/<bcode>") # Zoeken op barcode
 def bcode_lookup(bcode):
    return bcode.prod_lookup(bcode)
+
+
+# START Barcode Webcam Scanner
+
+@app.route("/cam")  # Barcode webcam scanner
+def cam():
+  return render_template("cam.html")
+
+# END Barcode Webcam Scanner
