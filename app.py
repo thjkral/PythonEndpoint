@@ -23,8 +23,11 @@ def welcome_message():
 def name_lookup(name):
     prodList = fr.prod_lookup(name)
     
-    for p in prodList:
-        return str(p)
+    if len(prodList) == 0:
+        return "No results"
+    else:
+        for p in prodList:
+            return str(p)
 
 
 @app.route("/idLookup/<id>") # Zoeken op ID
