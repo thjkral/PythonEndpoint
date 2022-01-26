@@ -2,9 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jan 20 12:14:22 2022
-
 @author: tom
-, render_template, Response, redirect
 """
 
 
@@ -12,7 +10,6 @@ from flask import Flask, render_template, Response, redirect, jsonify
 import pandas as pd
 import json
 import BestandFreek as fr
-import WebcamBarcodeReader as wbr
 
 app = Flask(__name__)
 
@@ -52,6 +49,7 @@ def bcode_lookup(bcode):
        return "No results"
    else:
        return jsonify(product)
+
 
 
 
