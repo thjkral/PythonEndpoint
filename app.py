@@ -11,7 +11,7 @@ from flask import Flask, render_template, Response, redirect
 import pandas as pd
 import json
 import BestandFreek as fr
-
+import cv2
 
 app = Flask(__name__)
 
