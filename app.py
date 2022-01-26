@@ -12,6 +12,7 @@ import pandas as pd
 import json
 import BestandFreek as fr
 import cv2
+import pyzbar.pyzbar as pb
 
 app = Flask(__name__)
 
@@ -39,7 +40,10 @@ def bcode_lookup(bcode):
 
 @app.route("/cam")  # Barcode webcam scanner
 def cam():
-    cv2.VideoCapture(0)
+    camera = cv2.VideoCapture(0)
+    success, frame = camera.read()
+    if success:
+        decoded = pb.decode(frame)
     return render_template("cam.html")
 
 
