@@ -11,7 +11,7 @@ from flask import Flask, render_template, Response, redirect
 import pandas as pd
 import json
 import BestandFreek as fr
-import WebcamBarcodeReader as wbr
+
 
 app = Flask(__name__)
 
