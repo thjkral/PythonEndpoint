@@ -49,8 +49,6 @@ def bcode_lookup(barcode):
     
     testdf = df.copy()
 
-    testdf = testdf.head()
-
     for i, product in testdf.iterrows():
         if product["Barcode"] == barcode:
             return product
@@ -70,14 +68,12 @@ def id_lookup(ID):
     
     testdf = df.copy()
 
-    prod = []
-
     for i, product in testdf.iterrows():
         if product["ID"] == ID:
-            prod.append(product)
+            return product
         else:
             pass
-    return prod
+
 
 # id_lookup(1019)
 
