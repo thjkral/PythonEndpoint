@@ -16,7 +16,7 @@ app = Flask(__name__)
 
 @app.route("/") # Startpagina
 def welcome_message():
-    return "<p>The Python Endpoint is up and running...</p>"
+    return "<p><h1>The Python Endpoint is up and running...</h1><b>Routes:</b><br>Zoeken op product: /nameLookup/{productnaam}<br>Zoeken op ID: /idLookup/{id}<br>Zoeken op barcode: /bcodeLookup/{barcode}</p>"
 
 
 @app.route("/nameLookup/<name>") # Zoeken op productnaam
