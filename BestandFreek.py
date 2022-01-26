@@ -49,14 +49,16 @@ def bcode_lookup(barcode):
     
     testdf = df.copy()
 
+    prod = []
+
     for i, product in testdf.iterrows():
         if product["Barcode"] == barcode:
-            return str(product)
+            prod.append(product)
         else:
-            return "Sorry nothing found"
+            pass
+    return prod       
 
-
-# bcode_lookup(2056)
+# bcode_lookup(8000050837825)
 
 # Hieronder een functie voor het opzoeken van values van een product aan de hand van de ID code.
 
@@ -68,11 +70,14 @@ def id_lookup(ID):
     
     testdf = df.copy()
 
+    prod = []
+
     for i, product in testdf.iterrows():
         if product["ID"] == ID:
-            return (str(product))
+            prod.append(product)
         else:
-            return "Sorry nothing found"
+            pass
+    return prod
 
 # id_lookup(1019)
 
