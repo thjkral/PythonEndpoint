@@ -48,11 +48,11 @@ def cam():
 #         mimetype="multipart/x-mixed-replace; boundary=frame")
 #
 #
-# @app.route("/scanner", methods = ["POST", "GET"])  # Scanner landing page
-# def scanner():
-#   return render_template("scanner.html")
-#
-#
+@app.route("/scanner", methods = ["POST", "GET"])  # Scanner landing page
+def scanner():
+  return render_template("scanner.html")
+
+
 # @app.route("/restart", methods = ["POST", "GET"])  #
 # def restart():
 #   wbr.code = 0
