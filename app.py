@@ -37,8 +37,8 @@ def bcode_lookup(bcode):
 
 # START Barcode Webcam Scanner
 
-@app.route("/cam")  # Barcode webcam scanner
-def cam():
-  return render_template("cam.html")
+# @app.route("/cam")  # Barcode webcam scanner
+# def cam():
+#   return render_template("cam.html")
 
 # END Barcode Webcam Scanner
