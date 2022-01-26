@@ -39,7 +39,8 @@ def bcode_lookup(bcode):
 
 @app.route("/cam")  # Barcode webcam scanner
 def cam():
-  return render_template("cam.html")
+    cv2.VideoCapture(0)
+    return render_template("cam.html")
 
 
 @app.route("/video_feed", methods = ["POST", "GET"])  # Video feed, as Response html page, non-visitable
