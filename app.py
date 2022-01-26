@@ -14,9 +14,9 @@ import BestandFreek as fr
 
 app = Flask(__name__)
 
-@app.route("/")
+@app.route("/") # Startpagina
 def welcome_message():
-    return "<p>Python Endpoint</p>"
+    return "<p><h1>The Python Endpoint is up and running...</h1><b>Routes:</b><br>Zoeken op product: /nameLookup/{productnaam}<br>Zoeken op ID: /idLookup/{id}<br>Zoeken op barcode: /bcodeLookup/{barcode}</p>"
 
 
 @app.route("/nameLookup/<name>") # Zoeken op productnaam
@@ -26,12 +26,12 @@ def name_lookup(name):
 
 @app.route("/idLookup/<id>") # Zoeken op ID
 def id_lookup(id):
-    pass
+    return fr.id_lookup(int(id))
 
 
 @app.route("/bcodeLookup/<bcode>") # Zoeken op barcode
 def bcode_lookup(bcode):
-    pass
+   return bcode.prod_lookup(bcode)
 
 
 
