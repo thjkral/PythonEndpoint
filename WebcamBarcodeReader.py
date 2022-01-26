@@ -12,8 +12,6 @@ def setText(_img, _string, _pos, _font, _scale, _color, _thickness):
 
 
 code = 0
-
-
 def gen():
   camera = cv2.VideoCapture(0)
   while True:
