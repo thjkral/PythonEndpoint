@@ -1,6 +1,6 @@
 # import cv2
 import pyzbar.pyzbar as pb
-#
+
 # font_duplex = cv2.FONT_HERSHEY_DUPLEX
 # font_simple = cv2.FONT_HERSHEY_PLAIN
 #
