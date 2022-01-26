@@ -1,5 +1,8 @@
 import cv2
-import pyzbar.pyzbar as pb
+from pyzbar import pyzbar as pb
+
+# from imutils.video import VideoStream
+# https://www.pyimagesearch.com/2019/09/02/opencv-stream-video-to-web-browser-html-page/
 
 font_duplex = cv2.FONT_HERSHEY_DUPLEX
 font_simple = cv2.FONT_HERSHEY_PLAIN
