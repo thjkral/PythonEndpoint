@@ -21,7 +21,10 @@ def welcome_message():
 
 @app.route("/nameLookup/<name>") # Zoeken op productnaam
 def name_lookup(name):
-    return fr.prod_lookup(name)
+    prodList = fr.prod_lookup(name)
+    
+    for p in prodList:
+        return str(p)
 
 
 @app.route("/idLookup/<id>") # Zoeken op ID
@@ -31,7 +34,7 @@ def id_lookup(id):
 
 @app.route("/bcodeLookup/<bcode>") # Zoeken op barcode
 def bcode_lookup(bcode):
-   return bcode.prod_lookup(bcode)
+   return fr.bcode_lookup(bcode)
 
 
 
