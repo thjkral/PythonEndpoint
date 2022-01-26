@@ -53,10 +53,10 @@ def scanner():
   return render_template("scanner.html")
 
 
-# @app.route("/restart", methods = ["POST", "GET"])  #
-# def restart():
-#   wbr.code = 0
-#   return redirect("/cam")
+@app.route("/restart", methods = ["POST", "GET"])  # Restart and reset global variables
+def restart():
+  # wbr.code = 0
+  return redirect("/cam")
 #
 #
 # @app.route("/result", methods = ["POST", "GET"])
