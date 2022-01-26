@@ -89,6 +89,3 @@ def result():
     return redirect("scanner")
 
 # END Barcode Webcam Scanner
-
-if __name__ == '__main__':
-  app.run(debug=True, port=5001)
