@@ -1,5 +1,5 @@
 import cv2
-# from pyzbar import pyzbar
+import pyzbar.pyzbar as pb
 
 # from imutils.video import VideoStream
 # https://www.pyimagesearch.com/2019/09/02/opencv-stream-video-to-web-browser-html-page/
@@ -25,25 +25,25 @@ def gen():
       # todo show picture > no camera found, plug in your webcam and enable it in your browser
       break
     else:
-      # decoded = pb.decode(frame)
-      # if decoded != []:
-      #   objects = []
-      #   for decode in decoded:
-      #     name = str(decode.data).replace("b'", "")
-      #     name = name.replace("'", "")
-      #     type = decode.type
-      #     rect = decode.rect
-      #     objects.append({'name': name, 'type': type, 'rect': rect})
-      #
-      #   for o in objects:
-      #     setText(frame, f"{o['name']}", (o['rect'].left - 50, o['rect'].top - 50), font_duplex, 1, (255, 255, 255), 2)
-      #     setText(frame, f"{o['type']}", (o['rect'].left - 50, o['rect'].top - 20), font_simple, 2, (255, 255, 255), 2)
-      #     global code
-      #     code = o['name']
+      decoded = pb.decode(frame)
+      if decoded != []:
+        objects = []
+        for decode in decoded:
+          name = str(decode.data).replace("b'", "")
+          name = name.replace("'", "")
+          type = decode.type
+          rect = decode.rect
+          objects.append({'name': name, 'type': type, 'rect': rect})
+
+        for o in objects:
+          setText(frame, f"{o['name']}", (o['rect'].left - 50, o['rect'].top - 50), font_duplex, 1, (255, 255, 255), 2)
+          setText(frame, f"{o['type']}", (o['rect'].left - 50, o['rect'].top - 20), font_simple, 2, (255, 255, 255), 2)
+          global code
+          code = o['name']
 
       ret, buffer = cv2.imencode(".jpg", frame)
       frame = buffer.tobytes()
       yield(b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
-      # if decoded != []:
-      #   camera.release()
-      #   return
+      if decoded != []:
+        camera.release()
+        return
