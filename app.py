@@ -19,7 +19,7 @@ def welcome_message():
     return "<p><h1>The Python Endpoint is up and running...</h1><b>Routes:</b><br>Zoeken op product: /nameLookup/{productnaam}<br>Zoeken op ID: /idLookup/{id}<br>Zoeken op barcode: /bcodeLookup/{barcode}</p>"
 
 
-@app.route("/nameLookup/<name>") # Zoeken op productnaam
+@app.route("/nameLookup/<name>", methods = ['GET']) # Zoeken op productnaam
 def name_lookup(name):
     prodList = fr.prod_lookup(name)
     
@@ -30,7 +30,7 @@ def name_lookup(name):
             return jsonify(str(p))
 
 
-@app.route("/idLookup/<id>") # Zoeken op ID
+@app.route("/idLookup/<id>", methods = ['GET']) # Zoeken op ID
 def id_lookup(id):
     product = fr.id_lookup(int(id))
     
@@ -40,7 +40,7 @@ def id_lookup(id):
         return jsonify(product)
 
 
-@app.route("/bcodeLookup/<bcode>") # Zoeken op barcode
+@app.route("/bcodeLookup/<bcode>", methods = ['GET']) # Zoeken op barcode
 def bcode_lookup(bcode):
    product = fr.bcode_lookup(int(bcode))
    
