@@ -22,17 +22,37 @@ def welcome_message():
 
 @app.route("/nameLookup/<name>") # Zoeken op productnaam
 def name_lookup(name):
-    return fr.prod_lookup(name)
+    prodList = fr.prod_lookup(name)
+    
+    if len(prodList) == 0:
+        return "No results"
+    else:
+        for p in prodList:
+            return str(p)
 
 
 @app.route("/idLookup/<id>") # Zoeken op ID
 def id_lookup(id):
-    return fr.id_lookup(int(id))
+    product = fr.id_lookup(int(id))
+    
+    if product == None:
+        return "No results"
+    else:
+        return product
 
 
 @app.route("/bcodeLookup/<bcode>") # Zoeken op barcode
 def bcode_lookup(bcode):
-   return bcode.prod_lookup(bcode)
+   product = fr.bcode_lookup(int(bcode))
+   
+   if product == None:
+       return "No results"
+   else:
+       return product
+
+
+
+
 
 
 # START Barcode Webcam Scanner
