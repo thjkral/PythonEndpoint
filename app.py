@@ -7,7 +7,7 @@ Created on Thu Jan 20 12:14:22 2022
 """
 
 
-from flask import Flask
+from flask import Flask, jsonify
 import pandas as pd
 import json
 import BestandFreek as fr
@@ -27,7 +27,7 @@ def name_lookup(name):
         return "No results"
     else:
         for p in prodList:
-            return str(p)
+            return jsonify(str(p))
 
 
 @app.route("/idLookup/<id>") # Zoeken op ID
@@ -37,7 +37,7 @@ def id_lookup(id):
     if product == None:
         return "No results"
     else:
-        return product
+        return jsonify(product)
 
 
 @app.route("/bcodeLookup/<bcode>") # Zoeken op barcode
@@ -47,7 +47,7 @@ def bcode_lookup(bcode):
    if product == None:
        return "No results"
    else:
-       return product
+       return jsonify(product)
 
 
 
