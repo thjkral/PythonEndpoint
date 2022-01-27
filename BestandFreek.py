@@ -32,7 +32,7 @@ def prod_lookup(prod_name):
             if prod_name[0] in product["Descrip"] and prod_name[1] in product["Descrip"] and prod_name[2] in product["Descrip"] and prod_name[3] in product["Descrip"]:
                 prodList.append(product)
         else:
-            return "Sorry nothing found"
+            pass
     
     return prodList
      
@@ -51,7 +51,7 @@ def bcode_lookup(barcode):
 
     for i, product in testdf.iterrows():
         if product["Barcode"] == barcode:
-            return str(product)
+            return product
         else:
             pass
            
@@ -70,7 +70,7 @@ def id_lookup(ID):
 
     for i, product in testdf.iterrows():
         if product["ID"] == ID:
-            return str(product)
+            return product
         else:
             pass
 
