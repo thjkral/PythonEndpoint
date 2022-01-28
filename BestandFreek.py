@@ -33,9 +33,10 @@ def prod_lookup(prod_name):
                 prodList.append(product)
         else:
             pass
-    
-    return prodList
-     
+    dfprodList = pd.DataFrame(prodList)
+    return dfprodList
+
+# prod_lookup("tomato puree")
 
 # A function to lookup a product by the barcode.
 

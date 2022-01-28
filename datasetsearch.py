@@ -59,7 +59,7 @@ def prod_lookup(prod_name):
 
 data = pd.read_json("NutrientDatasetDictUpdate.json", 'r')
 
-df = pd.DataFrame(data)
+df = pd.DataFrame(data).set_index("ID")
 
 testdf = df.copy()
 
@@ -91,15 +91,12 @@ for i, product in testdf.iterrows():
 
 
 
-# testdf["Barcode"] = new_values
+testdf["Barcode"] = new_values
 
-# testdf.to_json(r'NutrientDatasetWithBarcodesV2.json', orient = 'records')
+testdf.to_json(r'NutrientDatasetWithBarcodesV2.json')
 
-# data = pd.read_json("NutrientDatasetWithBarcodes.json")
 
-# df = pd.DataFrame(data, index = "ID")
 
-# print(df.head())
 
 
 
