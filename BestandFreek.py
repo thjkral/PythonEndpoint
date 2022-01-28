@@ -37,8 +37,6 @@ def prod_lookup(prod_name):
     return prodList
      
 
-# print(prod_lookup("tomato"))
-
 # A function to lookup a product by the barcode.
 
 def bcode_lookup(barcode):
