@@ -6,7 +6,7 @@ import json
 
 def prod_lookup(prod_name):
 
-    data = pd.read_json("NutrientDatasetWithBarcodes.json", 'r')
+    data = pd.read_json("NutrientDatasetWithBarcodesV2.json", 'r')
 
     df = pd.DataFrame(data)
 
@@ -43,7 +43,7 @@ def prod_lookup(prod_name):
 
 def bcode_lookup(barcode):
 
-    data = pd.read_json("NutrientDatasetWithBarcodes.json", 'r')
+    data = pd.read_json("NutrientDatasetWithBarcodesV2.json", 'r')
 
     df = pd.DataFrame(data)
     
@@ -62,7 +62,7 @@ def bcode_lookup(barcode):
 
 def id_lookup(ID):
 
-    data = pd.read_json("NutrientDatasetWithBarcodes.json", 'r')
+    data = pd.read_json("NutrientDatasetWithBarcodesV2.json", 'r')
 
     df = pd.DataFrame(data)
     
@@ -103,7 +103,7 @@ def id_lookup(ID):
 
 # Function to search a dataset to retrieve a number of calories burned per activity/sport
 
-def burned_calories(kg, sport, time_in_hours):
+def sport_lookup(kg, sport, time_in_hours):
 
     df = pd.read_csv("CleanSportDataset.csv", delimiter = ",")
 
