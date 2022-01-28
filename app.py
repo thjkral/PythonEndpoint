@@ -27,7 +27,9 @@ def name_lookup(name):
         return "No results"
     else:
         for p in prodList:
-            return jsonify(str(p))
+            result = pd.DataFrame(p)
+            print(result)
+            return result.to_json()
 
 
 @app.route("/idLookup/<id>", methods = ['GET']) # Zoeken op ID
