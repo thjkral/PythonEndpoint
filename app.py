@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Thu Jan 20 12:14:22 2022
+
 @author: tom
 """
 
@@ -10,6 +11,7 @@ from flask import Flask, render_template, Response, redirect, jsonify
 import pandas as pd
 import json
 import BestandFreek as fr
+import WebcamBarcodeReader as wbr
 
 app = Flask(__name__)
 
@@ -58,33 +60,40 @@ def bcode_lookup(bcode):
 
 # START Barcode Webcam Scanner
 
-@app.route("/cam")  # Barcode webcam scanner
+@app.route("/cam")  # Barcode webcam scanner landing page
 def cam():
-  return render_template("cam.html")
+    return render_template("cam.html")
 
 
-@app.route("/video_feed", methods = ["POST", "GET"])  # Video feed, as Response html page, non-visitable
+@app.route("/video_feed", methods=["POST", "GET"])  # Video feed, as Response html page, non-visitable
 def video_feed():
     return Response(wbr.gen(),
         mimetype="multipart/x-mixed-replace; boundary=frame")
 
 
-@app.route("/scanner", methods = ["POST", "GET"])  # Scanner landing page
+@app.route("/scanner", methods=["POST", "GET"])  # Scanner landing page
 def scanner():
   return render_template("scanner.html")
 
 
-@app.route("/restart", methods = ["POST", "GET"])  #
+@app.route("/restart", methods=["POST", "GET"])  # Restart and reset global variables
 def restart():
   wbr.code = 0
   return redirect("/cam")
 
 
-@app.route("/result", methods = ["POST", "GET"])
+# Upon submit, check if code was scanned
+# If true: show scanned product details
+# If false: reload scanner page
+@app.route("/result", methods=["POST", "GET"])
 def result():
   if wbr.code:
-    return render_template("result.html", barcode=wbr.code)
+    product = fr.bcode_lookup(int(wbr.code))
+    product_keys = list(product.keys())
+    return render_template("result.html", barcode=wbr.code, product=product, keys=product_keys)
   else:
     return redirect("scanner")
 
 # END Barcode Webcam Scanner
+
+app.run()
