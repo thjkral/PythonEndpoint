@@ -13,17 +13,35 @@
 
     <body>
         <center>
-            {% if barcode %}
-            <h1 style="margin-top: 10px;">Success!</h1>
-            <h3 style="margin-top: 20px; color: #014801;">{{barcode}}</h3>
-            {% else %}
-            <h1 style="margin-top: 10px;">Something went wrong!</h1>
-            <h3 style="margin-top: 20px; color: #014801;">No barcode found.</h3>
-            {% endif %}
-
             <form class="grid" action="/restart" method="GET">
                 <button style="margin-top: 20px" type="Submit" class="file_submit btn btn-outline-success">START AGAIN</button>
             </form>
+            {% if barcode %}
+                <h1 style="margin-top: 10px;">Success!</h1>
+                <h3 style="margin-top: 20px; margin-bottom: 30px; color: #014801;">{{barcode}}</h3>
+            {% else %}
+                <h1 style="margin-top: 10px;">Something went wrong!</h1>
+                <h3 style="margin-top: 20px; color: #014801;">No barcode found.</h3>
+            {% endif %}
+
+<!--            {% for key in keys %}-->
+<!--                <h3 style="margin-top: 5px; color: #014801;">{{ key }}: {{ product[key] }}</h3>-->
+<!--            {% endfor %}-->
+
+            <div class="row justify-content-center">
+                <div class="col-auto">
+                    <table class="table">
+                        {% for key in keys %}
+                            <tr>
+                                <th>{{ key }}</th>
+                                <td>{{ product[key] }}</td>
+                            </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+            </div>
+
+
         </center>
     </body>
 </html>

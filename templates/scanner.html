@@ -14,16 +14,12 @@
     <body>
         <center>
             <h1 style="margin-top: 10px;">Scanning your barcode...</h1>
-<!--            <h6 style="margin-top: 10px;">Please enable your camera.</h6>-->
+
             <img style="margin-top: 20px;" class="border border-success rounded" src="{{ url_for('video_feed') }}">
 
             <form class="grid" action="/result" method="POST">
                 <button style="margin-top: 30px;" type="Submit" class="file_submit btn btn-outline-success">SUBMIT BARCODE</button>
             </form>
-
-            {% if text %}
-            <h4 style="margin-top: 10px;">No barcode was scanned.</h4>
-            {% endif %}
         </center>
     </body>
 </html>
