@@ -7,7 +7,7 @@ Created on Thu Jan 20 12:14:22 2022
 """
 
 
-from flask import Flask, render_template, Response, redirect
+from flask import Flask, render_template, Response, redirect, jsonify
 import pandas as pd
 import json
 import BestandFreek as fr
@@ -20,7 +20,7 @@ def welcome_message():
     return "<p><h1>The Python Endpoint is up and running...</h1><b>Routes:</b><br>Zoeken op product: /nameLookup/{productnaam}<br>Zoeken op ID: /idLookup/{id}<br>Zoeken op barcode: /bcodeLookup/{barcode}</p>"
 
 
-@app.route("/nameLookup/<name>") # Zoeken op productnaam
+@app.route("/nameLookup/<name>", methods = ['GET']) # Zoeken op productnaam
 def name_lookup(name):
     prodList = fr.prod_lookup(name)
     
@@ -28,27 +28,29 @@ def name_lookup(name):
         return "No results"
     else:
         for p in prodList:
-            return str(p)
+            result = pd.DataFrame(p)
+            print(result)
+            return result.to_json()
 
 
-@app.route("/idLookup/<id>") # Zoeken op ID
+@app.route("/idLookup/<id>", methods = ['GET']) # Zoeken op ID
 def id_lookup(id):
     product = fr.id_lookup(int(id))
     
     if product == None:
         return "No results"
     else:
-        return product
+        return jsonify(product)
 
 
-@app.route("/bcodeLookup/<bcode>") # Zoeken op barcode
+@app.route("/bcodeLookup/<bcode>", methods = ['GET']) # Zoeken op barcode
 def bcode_lookup(bcode):
    product = fr.bcode_lookup(int(bcode))
    
    if product == None:
        return "No results"
    else:
-       return product
+       return jsonify(product)
 
 
 
@@ -60,6 +62,18 @@ def bcode_lookup(bcode):
 @app.route("/cam")  # Barcode webcam scanner landing page
 def cam():
     return render_template("cam.html")
+
+# START Barcode Webcam Scanner
+
+@app.route("/cam")  # Barcode webcam scanner landing page
+def cam():
+    return render_template("cam.html")
+
+
+@app.route("/video_feed", methods=["POST", "GET"])  # Video feed, as Response html page, non-visitable
+def video_feed():
+    return Response(wbr.gen(),
+        mimetype="multipart/x-mixed-replace; boundary=frame")
 
 
 @app.route("/video_feed", methods=["POST", "GET"])  # Video feed, as Response html page, non-visitable
