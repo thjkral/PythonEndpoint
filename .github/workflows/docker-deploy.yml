@@ -30,7 +30,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: neonchicken/cam-test:${{ github.sha }}
+          tags: onodrim/cam-test:${{ github.sha }}
 
   deploy:
     name: Deploy to Azure web app
@@ -43,4 +43,4 @@ jobs:
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
         publish-profile: ${{ secrets.AZURE_PUBLISH_PROFILE }}
-        images: registry.hub.docker.com/neonchicken/cam-test:${{ github.sha }}
+        images: registry.hub.docker.com/onodrim/cam-test:${{ github.sha }}
