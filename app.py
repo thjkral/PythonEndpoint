@@ -59,16 +59,7 @@ def sport_lookup(sport):
 
     return str(avgCalBurn)
 
-
-
-
-
-
-
-
-
-
-
+    
 
 
 
