@@ -35,22 +35,29 @@ def name_lookup(name):
 
 @app.route("/idLookup/<id>", methods = ['GET']) # Zoeken op ID
 def id_lookup(id):
-    product = fr.id_lookup(int(id))
+    product = fr.id_lookup(id)
     
-    if product == None:
+    if product.empty == None:
         return "No results"
     else:
-        return jsonify(product)
+        return product.to_json()
 
 
 @app.route("/bcodeLookup/<bcode>", methods = ['GET']) # Zoeken op barcode
 def bcode_lookup(bcode):
    product = fr.bcode_lookup(int(bcode))
    
-   if product == None:
+   if product.empty == None:
        return "No results"
    else:
-       return jsonify(product)
+       return product.to_json()
+
+
+@app.route("/sportLookup/<sport>", methods = ['GET'])
+def sport_lookup(sport):
+    avgCalBurn = fr.sport_lookup(sport)
+
+    return str(avgCalBurn)
 
 
 
