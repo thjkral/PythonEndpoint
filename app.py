@@ -58,11 +58,34 @@ def bcode_lookup(bcode):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 # START Barcode Webcam Scanner
 
 @app.route("/cam")  # Barcode webcam scanner landing page
 def cam():
     return render_template("cam.html")
+
+# START Barcode Webcam Scanner
+
+@app.route("/cam")  # Barcode webcam scanner landing page
+def cam():
+    return render_template("cam.html")
+
+
+@app.route("/video_feed", methods=["POST", "GET"])  # Video feed, as Response html page, non-visitable
+def video_feed():
+    return Response(wbr.gen(),
+        mimetype="multipart/x-mixed-replace; boundary=frame")
 
 
 @app.route("/video_feed", methods=["POST", "GET"])  # Video feed, as Response html page, non-visitable
