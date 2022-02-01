@@ -1,6 +1,5 @@
 import cv2
 import pyzbar.pyzbar as pb
-
 import imagezmq
 import imutils
 

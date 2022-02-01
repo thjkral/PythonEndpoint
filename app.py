@@ -57,6 +57,18 @@ def bcode_lookup(bcode):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 # START Barcode Webcam Scanner
 
 @app.route("/cam")  # Barcode webcam scanner landing page
