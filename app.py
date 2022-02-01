@@ -82,12 +82,6 @@ def sport_lookup(sport):
 def cam():
     return render_template("cam.html")
 
-# START Barcode Webcam Scanner
-
-@app.route("/cam")  # Barcode webcam scanner landing page
-def cam():
-    return render_template("cam.html")
-
 
 @app.route("/video_feed", methods=["POST", "GET"])  # Video feed, as Response html page, non-visitable
 def video_feed():
