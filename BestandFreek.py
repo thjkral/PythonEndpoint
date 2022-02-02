@@ -33,14 +33,15 @@ def prod_lookup(prod_name):
                 prodList.append(product)
         else:
             pass
-    dfprodList = pd.DataFrame(prodList)
-    return dfprodList
+    return prodList
 
 # prod_lookup("tomato puree")
 
 # A function to lookup a product by the barcode.
 
 def bcode_lookup(barcode):
+
+    barcode = int(barcode)
 
     data = pd.read_json("NutrientDatasetWithBarcodesV2.json", 'r')
 
@@ -55,11 +56,13 @@ def bcode_lookup(barcode):
             pass
            
 
-# bcode_lookup(2056)
+bcode_lookup(2056)
 
 # A function to lookup a product by the ID code.
 
 def id_lookup(ID):
+
+    ID = int(ID)
 
     data = pd.read_json("NutrientDatasetWithBarcodesV2.json", 'r')
 
@@ -102,7 +105,7 @@ def id_lookup(ID):
 
 # Function to search a dataset to retrieve a number of calories burned per activity/sport
 
-def sport_lookup(kg, sport, time_in_hours):
+def sport_lookup(sport):
 
     df = pd.read_csv("CleanSportDataset.csv", delimiter = ",")
 
@@ -110,11 +113,13 @@ def sport_lookup(kg, sport, time_in_hours):
 
     sport = sport.split()
 
+    counter = 0
+
     cal_per_kg = 0
 
     col_rev = "Activity, Exercise or Sport (1 hour)"
 
-    sport_list = []
+    # sport_list = []
 
     for i, activity in df.iterrows():
 
@@ -122,24 +127,29 @@ def sport_lookup(kg, sport, time_in_hours):
                   
             if sport[0] in activity[col_rev]:
                 cal_per_kg += activity["Calories per kg"]
-                sport_list.append(activity)
+                counter += 1
+                # sport_list.append(activity)
 
         elif len(sport) == 2:
 
             if sport[0] in activity[col_rev] and sport[1] in activity[col_rev]:
                 cal_per_kg += activity["Calories per kg"]
-                sport_list.append(activity)
+                counter += 1
+                # sport_list.append(activity)
 
         elif len(sport) ==3:
 
             if sport[0] in activity[col_rev] and sport[1] in activity[col_rev] and sport[2] in activity[col_rev]:
                 cal_per_kg += activity["Calories per kg"]
-                sport_list.append(activity)
+                counter += 1
+                # sport_list.append(activity)
         elif len(sport) == 4:
 
             if sport[0] in activity[col_rev] and sport[1] in activity[col_rev] and sport[2] in activity[col_rev] and sport[3] in activity[col_rev]:
                 cal_per_kg += activity["Calories per kg"]
-                sport_list.append(activity)
+                counter += 1
+                # sport_list.append(activity)
         else:
             pass
-    return sport_list
+
+    return round((cal_per_kg / counter), 4)

@@ -57,43 +57,68 @@ def prod_lookup(prod_name):
 # # barcode_modifier(8000050837825, "SPAGHETTI,CKD,ENR,W/ SALT")
 # # barcode_modifier(111111222222, "BUTTER,WITH SALT")
 
-data = pd.read_json("NutrientDatasetDictUpdate.json", 'r')
+# data = pd.read_json("NutrientDatasetDictUpdate.json", 'r')
 
-df = pd.DataFrame(data).set_index("ID")
+# df = pd.DataFrame(data).set_index("ID")
 
-testdf = df.copy()
+# testdf = df.copy()
 
-new_values = []
+# new_values = []
 
-for i, product in testdf.iterrows():
-    if product["ShortDescrip"] == '"BUTTER,WITH SALT"':
-        new_object = product.replace(product["Barcode"], 111111222222)
-        new_barcode = new_object["Barcode"]
-        new_values.append(new_barcode)
-    elif product["ShortDescrip"] == '"SPAGHETTI,CKD,ENR,W/ SALT"':
-        new_object = product.replace(product["Barcode"], 8000050837825)
-        new_barcode = new_object["Barcode"]
-        new_values.append(new_barcode)        
-    elif product["ShortDescrip"] == '"CORN,SWT,WHITE,CKD,BLD,DRND,W/SALT"':
-        new_object = product.replace(product["Barcode"], 3083680597210)
-        new_barcode = new_object["Barcode"]
-        new_values.append(new_barcode)  
-    elif product["ShortDescrip"] == '"CHILI WITH BEANS,CANNED"':
-        new_object = product.replace(product["Barcode"], 8718907108324)
-        new_barcode = new_object["Barcode"]
-        new_values.append(new_barcode) 
-    elif product["ShortDescrip"] == '"TOMATO PRODUCTS,CND,PUREE,W/SALT"':
-        new_object = product.replace(product["Barcode"], 8710400044567)
-        new_barcode = new_object["Barcode"]
-        new_values.append(new_barcode) 
-    else:
-        new_values.append(product["Barcode"])
+# for i, product in testdf.iterrows():
+#     if product["ShortDescrip"] == '"BUTTER,WITH SALT"':
+#         new_object = product.replace(product["Barcode"], 111111222222)
+#         new_barcode = new_object["Barcode"]
+#         new_values.append(new_barcode)
+#     elif product["ShortDescrip"] == '"SPAGHETTI,CKD,ENR,W/ SALT"':
+#         new_object = product.replace(product["Barcode"], 8000050837825)
+#         new_barcode = new_object["Barcode"]
+#         new_values.append(new_barcode)        
+#     elif product["ShortDescrip"] == '"CORN,SWT,WHITE,CKD,BLD,DRND,W/SALT"':
+#         new_object = product.replace(product["Barcode"], 3083680597210)
+#         new_barcode = new_object["Barcode"]
+#         new_values.append(new_barcode)  
+#     elif product["ShortDescrip"] == '"CHILI WITH BEANS,CANNED"':
+#         new_object = product.replace(product["Barcode"], 8718907108324)
+#         new_barcode = new_object["Barcode"]
+#         new_values.append(new_barcode) 
+#     elif product["ShortDescrip"] == '"TOMATO PRODUCTS,CND,PUREE,W/SALT"':
+#         new_object = product.replace(product["Barcode"], 8710400044567)
+#         new_barcode = new_object["Barcode"]
+#         new_values.append(new_barcode) 
+#     else:
+#         new_values.append(product["Barcode"])
 
 
 
-testdf["Barcode"] = new_values
+# testdf["Barcode"] = new_values
 
-testdf.to_json(r'NutrientDatasetWithBarcodesV2.json')
+# testdf.to_json(r'NutrientDatasetWithBarcodesV2.json')
+
+
+
+
+# data = pd.read_json("NutrientDatasetWithBarcodesV2.json", 'r')
+
+# df = pd.DataFrame(data)
+
+# testdf = df.copy()
+
+# prodList = []
+
+# for index, row in testdf.iterrows():
+#     prodList.append(row["Descrip"])
+
+# json_string = json.dumps(prodList)
+
+# with open('ProdNameList.json', 'w') as jsonfile:
+#     json.dump(json_string, jsonfile)
+
+
+
+
+
+
 
 
 
