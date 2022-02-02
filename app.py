@@ -8,12 +8,16 @@ Created on Thu Jan 20 12:14:22 2022
 
 
 from flask import Flask, render_template, Response, redirect, jsonify
+from flask_socketio import SocketIO, send, emit
+import base64, cv2, io, numpy as np
+from PIL import Image
 import pandas as pd
 import json
 import BestandFreek as fr
 import WebcamBarcodeReader as wbr
 
 app = Flask(__name__)
+socketio = SocketIO(app)
 
 @app.route("/") # Startpagina
 def welcome_message():
@@ -69,7 +73,6 @@ def sport_lookup(sport):
 
 
 
-
 # START Barcode Webcam Scanner
 
 @app.route("/cam")  # Barcode webcam scanner landing page
@@ -85,7 +88,7 @@ def video_feed():
 
 @app.route("/scanner", methods=["POST", "GET"])  # Scanner landing page
 def scanner():
-  return render_template("scanner.html")
+  return render_template("client.html")
 
 
 @app.route("/restart", methods=["POST", "GET"])  # Restart and reset global variables
@@ -106,6 +109,39 @@ def result():
   else:
     return redirect("scanner")
 
+@socketio.on('catch-frame')
+def catch_frame(data):
+    emit('response_back', data)
+
+def readb64(base64_string):
+    idx = base64_string.find('base64,')
+    base64_string  = base64_string[idx+7:]
+
+    sbuf = io.BytesIO()
+
+    sbuf.write(base64.b64decode(base64_string, ' /'))
+    pimg = Image.open(sbuf)
+
+
+    return cv2.cvtColor(np.array(pimg), cv2.COLOR_RGB2BGR)
+
+@socketio.on('image')
+def image(data_image):
+    feed = (readb64(data_image))
+    frame = wbr.gen(feed)[0]
+    theCode = wbr.gen(feed)[1]
+    if theCode == 0:
+        theCode = "Scan a barcode!"
+    imgencode = cv2.imencode('.jpeg', frame, [cv2.IMWRITE_JPEG_QUALITY, 40])[1]
+
+    # base64 encode
+    stringData = base64.b64encode(imgencode).decode('utf-8')
+    b64_src = 'data:image/jpeg;base64,'
+    stringData = b64_src + stringData
+
+    # emit the frame back
+    emit('response_back', [stringData, theCode])
+
 # END Barcode Webcam Scanner
 
-app.run()
+socketio.run(app)
